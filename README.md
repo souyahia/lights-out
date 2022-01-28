@@ -1,2 +1,3 @@
-# lights-out
-A small React Native project to implement the game of Lights Out (created by Tiger Electronics in 1995)
+# Lights Out
+
+This project is an implementation of the [Lights Out game](https://en.wikipedia.org/wiki/Lights_Out_(game)) released by Tiger Electronics in 1995.
