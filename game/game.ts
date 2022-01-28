@@ -6,6 +6,10 @@ export class GameGrid {
   }
 
   private static createNewGrid(): boolean[] {
-    return new Array(25).fill(false);
+    const grid = [];
+    for (let i = 0; i < 25; i++) {
+      grid.push(Math.random() < 0.5);
+    }
+    return grid;
   }
 }
