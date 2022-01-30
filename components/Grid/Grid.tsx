@@ -10,9 +10,9 @@ const Grid = () => {
   return (
     <FlatList
       style={styles.list}
-      data={grid.cells}
+      data={grid}
       numColumns={5}
-      renderItem={({item}) => <Cell activated={item}/>}
+      renderItem={({item, index}) => <Cell index={index} activated={item}/>}
     />
   );
 }

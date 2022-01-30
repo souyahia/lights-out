@@ -1,12 +1,12 @@
-import { AnyAction, createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
-import { GameGrid } from '../game/game';
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+import { createNewGrid, toggleGridCell } from '../game/game';
 
 interface GameState {
-  grid: GameGrid;
+  grid: boolean[];
 }
 
 const initialState: GameState = {
-  grid: new GameGrid(),
+  grid: createNewGrid(),
 };
 
 const gameSlice = createSlice({
@@ -14,12 +14,11 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     toggleCell: (state: Draft<GameState>, action: PayloadAction<number>) => {
-      // TODO
+      toggleGridCell(state.grid, action.payload);
     },
   },
 });
+
 export const { toggleCell } = gameSlice.actions;
 
-// The cast is needed here because apparently, my IDE can not infer the types for this default export.
-// If someone knows whats wrong (bad typescript syntax or IDE error ?) I'd like to know :)
-export default gameSlice.reducer as ((state: (GameState | undefined), action: AnyAction) => GameState);
+export default gameSlice.reducer;
