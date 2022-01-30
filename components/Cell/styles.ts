@@ -5,14 +5,14 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 5,
-    borderColor: '#000000',
-    borderWidth: 2,
+    borderColor: '#002642',
+    borderWidth: 1,
   },
   on: {
-    backgroundColor: 'blue'
+    backgroundColor: '#008af0'
   },
   off: {
-    backgroundColor: 'red'
+    backgroundColor: '#b3dfff'
   }
 });
 
