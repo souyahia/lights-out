@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../store';
 import Cell from '../Cell/Cell';
 import styles from './styles';
 
-const Grid: FC<{}> = () => {
+const Grid: FC = () => {
   const grid = useAppSelector((state) => state.game.grid);
 
   return (

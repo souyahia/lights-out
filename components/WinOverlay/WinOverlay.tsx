@@ -6,7 +6,7 @@ import { goToNextLevel } from '../../store/GameState';
 import styles from './styles';
 import globalStyles from '../../globalStyles';
 
-const WinOverlay: FC<{}> = () => {
+const WinOverlay: FC = () => {
   const isWon = useAppSelector((state) => state.game.isWon);
   const dispatch = useAppDispatch();
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { toggleCell } from '../../../store/GameState';
 import styles from './styles';
 
@@ -10,6 +10,7 @@ export type CellProps = {
 };
 
 const Cell: FC<CellProps> = ({ index, activated }) => {
+  const state = useAppSelector(s => s);
   const dispatch = useAppDispatch();
 
   return (
