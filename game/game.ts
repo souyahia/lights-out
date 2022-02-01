@@ -5,7 +5,7 @@ export function toggleGridCell(grid: boolean[], index: number): void {
 }
 
 export function createNewGrid(): boolean[] {
-  const grid = [];
+  const grid: boolean[] = [];
   for (let i = 0; i < 25; i++) {
     grid.push(Math.random() < 0.5);
   }

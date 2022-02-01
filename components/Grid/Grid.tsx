@@ -13,6 +13,7 @@ const Grid = () => {
       data={grid}
       numColumns={5}
       renderItem={({item, index}) => <Cell index={index} activated={item}/>}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 }

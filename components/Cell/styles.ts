@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   on: {
-    backgroundColor: '#008af0'
+    backgroundColor: '#f6c681',
   },
   off: {
-    backgroundColor: '#b3dfff'
+    backgroundColor: '#a69b8d',
   }
 });
 

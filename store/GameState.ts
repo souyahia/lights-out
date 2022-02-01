@@ -3,10 +3,12 @@ import { createNewGrid, toggleGridCell } from '../game/game';
 
 interface GameState {
   grid: boolean[];
+  isWon: boolean;
 }
 
 const initialState: GameState = {
   grid: createNewGrid(),
+  isWon: false,
 };
 
 const gameSlice = createSlice({
@@ -15,6 +17,10 @@ const gameSlice = createSlice({
   reducers: {
     toggleCell: (state: Draft<GameState>, action: PayloadAction<number>) => {
       toggleGridCell(state.grid, action.payload);
+
+      if (state.grid.every(isOn => !isOn)) {
+        state.isWon = true;
+      }
     },
   },
 });
