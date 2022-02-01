@@ -1,14 +1,21 @@
-import React from 'react';
-import { Image, View } from 'react-native';
-import { useAppSelector } from '../../store';
+import React, { FC } from 'react';
+import { Button, Image, Text, TouchableOpacity, View } from 'react-native';
+import { primaryColor } from '../../globalStyles';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { goToNextLevel } from '../../store/GameState';
 import styles from './styles';
+import globalStyles from '../../globalStyles';
 
-const WinOverlay = () => {
+const WinOverlay: FC<{}> = () => {
   const isWon = useAppSelector((state) => state.game.isWon);
+  const dispatch = useAppDispatch();
 
   return isWon ? (
     <View style={[styles.overlay]}>
       <Image style={styles.sprite} source={require('../../assets/win.png')} />
+      <TouchableOpacity style={globalStyles.primaryButton} onPress={() => dispatch(goToNextLevel())}>
+        <Text style={globalStyles.primaryButtonText}>Play Again</Text>
+      </TouchableOpacity>
     </View>
   ) : null;
 }

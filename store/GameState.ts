@@ -22,9 +22,13 @@ const gameSlice = createSlice({
         state.isWon = true;
       }
     },
+    goToNextLevel: (state: Draft<GameState>) => {
+      state.grid = createNewGrid();
+      state.isWon = false;
+    }
   },
 });
 
-export const { toggleCell } = gameSlice.actions;
+export const { toggleCell, goToNextLevel } = gameSlice.actions;
 
 export default gameSlice.reducer;

@@ -1,6 +1,6 @@
 import { Image, StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
-import Grid from './components/Grid/Grid';
+import Grid from './components/game/Grid/Grid';
 import WinOverlay from './components/WinOverlay';
 import store from './store';
 
