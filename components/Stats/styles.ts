@@ -8,17 +8,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
   },
-  scoreContainer: {
+  statContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  scoreIcon: {
+  consecutiveWinsContainer: {
+    marginLeft: 10,
+  },
+  statIcon: {
     width: 35,
     height: 35,
     marginRight: 5,
   },
-  scoreText: {
+  statText: {
     fontSize: 20,
     fontWeight: 'bold',
   }

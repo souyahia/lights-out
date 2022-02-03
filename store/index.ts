@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import gameReducer, { setScore } from './GameState';
+import gameReducer, { setConsecutiveWins, setScore, setSkipTokens } from './GameState';
 import middlewares from './middleware';
-import { getCurrentScore } from './secureStore';
+import { getConsecutiveWins, getCurrentScore, getSkipTokens } from './secureStore';
 
 const rootReducer = combineReducers({
   game: gameReducer,
@@ -20,7 +20,12 @@ const store = configureStore({
 
 export async function initStoreFromSecureStore(): Promise<void> {
   const score = await getCurrentScore();
+  const skipTokens = await getSkipTokens();
+  const consecutiveWins = await getConsecutiveWins();
+
   store.dispatch(setScore(score));
+  store.dispatch(setSkipTokens(skipTokens));
+  store.dispatch(setConsecutiveWins(consecutiveWins));
 }
 
 export default store;

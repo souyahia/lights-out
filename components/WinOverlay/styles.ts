@@ -19,7 +19,22 @@ const styles = StyleSheet.create({
     height: undefined,
     aspectRatio: 1755/1082,
     marginBottom: 20,
-  }
+  },
+  skipTokenEarning: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  skipTokenEarningText: {
+    fontSize: 20,
+    color: '#ffffff',
+  },
+  skipTokenEarningIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 5,
+  },
 });
 
 export default styles;
