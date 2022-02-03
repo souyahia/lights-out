@@ -11,11 +11,15 @@ const WinOverlay: FC = () => {
     consecutiveWins: state.game.consecutiveWins ?? 0,
   }));
   const dispatch = useAppDispatch();
+  const displayedSprite = consecutiveWins % 50 === 0
+    ? require('../../assets/50-in-a-row.png')
+    : require('../../assets/win.png');
+  const hasSomeSkipTokensBeenEarned = consecutiveWins % 5 === 0;
 
   return isWon ? (
     <View style={styles.overlay}>
-      <Image style={styles.sprite} source={require('../../assets/win.png')} />
-      {consecutiveWins % 5 !== 0 ? <></> :
+      <Image style={styles.sprite} source={displayedSprite} />
+      {!hasSomeSkipTokensBeenEarned ? <></> :
         <View style={styles.skipTokenEarning}>
           <Text style={styles.skipTokenEarningText}>5 wins in a row ! (</Text>
           <Image style={styles.skipTokenEarningIcon} source={require('../../assets/coin.png')} />
