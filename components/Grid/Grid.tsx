@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { FlatList } from 'react-native';
-import { useAppSelector } from '../../../store';
+import { useAppSelector } from '../../store';
 import Cell from '../Cell/Cell';
 import styles from './styles';
 

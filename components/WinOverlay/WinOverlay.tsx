@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { Button, Image, Text, TouchableOpacity, View } from 'react-native';
-import { primaryColor } from '../../globalStyles';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { goToNextLevel } from '../../store/GameState';
 import styles from './styles';

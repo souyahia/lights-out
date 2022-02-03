@@ -5,6 +5,7 @@ interface GameState {
   grid: boolean[];
   initialGrid: boolean[];
   isWon: boolean;
+  score: number | null;
 }
 
 const initialGrid = createNewGrid();
@@ -13,6 +14,7 @@ const initialState: GameState = {
   grid: [...initialGrid],
   initialGrid,
   isWon: false,
+  score: null,
 };
 
 const gameSlice = createSlice({
@@ -21,7 +23,7 @@ const gameSlice = createSlice({
   reducers: {
     toggleCell: (state: Draft<GameState>, action: PayloadAction<number>) => {
       toggleGridCell(state.grid, action.payload);
-
+      
       if (state.grid.every(isOn => !isOn)) {
         state.isWon = true;
       }
@@ -34,9 +36,12 @@ const gameSlice = createSlice({
     resetLevel: (state: Draft<GameState>) => {
       state.grid = [...state.initialGrid];
     },
+    setScore: (state: Draft<GameState>, action: PayloadAction<number>) => {
+      state.score = action.payload;
+    },
   },
 });
 
-export const { toggleCell, goToNextLevel, resetLevel } = gameSlice.actions;
+export const { toggleCell, goToNextLevel, resetLevel, setScore } = gameSlice.actions;
 
 export default gameSlice.reducer;

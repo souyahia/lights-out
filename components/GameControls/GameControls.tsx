@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { useAppDispatch } from '../../../store';
-import { goToNextLevel, resetLevel, toggleCell } from '../../../store/GameState';
+import { useAppDispatch } from '../../store';
+import { goToNextLevel, resetLevel } from '../../store/GameState';
 import styles from './styles';
-import globalStyles from '../../../globalStyles';
+import globalStyles from '../../globalStyles';
 
 const GameControls: FC = () => {
   const dispatch = useAppDispatch();
