@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import GameControls from './components/GameControls';
 import Grid from './components/Grid/Grid';
@@ -10,14 +10,19 @@ import store, { initStoreFromSecureStore } from './store';
 export default function App() {
   useEffect(() => { initStoreFromSecureStore(); }, []);
 
+  const background = require('./assets/background.png');
+  const logo = require('./assets/logo.png');
+
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Image style={styles.logo} source={require('./assets/logo.png')} />
-        <Stats />
-        <Grid />
-        <GameControls />
-      </View>
+      <ImageBackground source={background} resizeMode="cover" style={styles.background}>
+        <View style={styles.container}>
+          <Image style={styles.logo} source={logo} />
+          <Stats />
+          <Grid />
+          <GameControls />
+        </View>
+      </ImageBackground>
       <WinOverlay />
     </Provider>
   );
@@ -26,10 +31,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+  },
+  background: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logo: {
     width: 200,
