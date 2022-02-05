@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
     aspectRatio: 1755/1082,
     marginBottom: 20,
   },
-  skipTokenEarning: {
+  additionalMessage: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
   },
-  skipTokenEarningText: {
+  additionalMessageText: {
     fontSize: 20,
     color: '#ffffff',
   },

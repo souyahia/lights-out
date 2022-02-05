@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import GameControls from './components/GameControls';
 import Grid from './components/Grid/Grid';
 import Stats from './components/Stats';
+import UserPressCounter from './components/UserPressCounter';
 import WinOverlay from './components/WinOverlay';
 import store, { initStoreFromSecureStore } from './store';
 
@@ -20,6 +21,7 @@ export default function App() {
           <Image style={styles.logo} source={logo} />
           <Stats />
           <Grid />
+          <UserPressCounter />
           <GameControls />
         </View>
       </ImageBackground>

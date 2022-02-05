@@ -2,18 +2,18 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     alignSelf: 'stretch',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-    marginBottom: 20,
+    justifyContent: 'center',
     flexDirection: 'row',
   },
-  consecutiveWins: {
-    marginLeft: 10,
+  targetMissed: {
+    color: '#a33131',
   },
-  hidden: {
-    opacity: 0,
-  },
+  targetInRange: {
+    color: '#000000',
+  }
 });
 
 export default styles;

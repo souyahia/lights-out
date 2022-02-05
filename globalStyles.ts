@@ -17,7 +17,21 @@ const globalStyles = StyleSheet.create({
   primaryButtonText: {
     color: '#ffffff',
     fontSize: 20,
-  }
+  },
+  statContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  statIcon: {
+    width: 35,
+    height: 35,
+    marginRight: 5,
+  },
+  statText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });
 
 export default globalStyles;
