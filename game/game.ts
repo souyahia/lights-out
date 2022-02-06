@@ -14,24 +14,20 @@ export function createNewGrid(): boolean[] {
   return grid;
 }
 
-export function findSolution(grid: boolean[]): boolean[] {
-  const { flippingMatrix, resultingGrid } = cascadeFlip(grid);
-  const resultingLastRow = resultingGrid.slice(20, 25);
+export function findBestSolution(grid: boolean[]): boolean[] {
+  const allSolutions = findAllSolutions(findOneSolution(grid));
+  let bestSolution = allSolutions[0];
+  let minimalPresses = getMinimalNumberOfPresses(bestSolution);
 
-  if (resultingLastRow.every(cell => !cell)) {
-    return flippingMatrix;
+  for (let i = 1; i < allSolutions.length; i++) {
+    const presses = getMinimalNumberOfPresses(allSolutions[i]);
+    if (presses < minimalPresses) {
+      minimalPresses = presses;
+      bestSolution = allSolutions[i];
+    }
   }
 
-  const updatedGrid = [...resultingGrid];
-  
-  getFirstRowPressSolution(resultingLastRow).forEach((value, index) => {
-    if (value) {
-      toggleGridCell(updatedGrid, index);
-      flippingMatrix[index] = !flippingMatrix[index];
-    }
-  });
-
-  return cascadeFlip(updatedGrid, flippingMatrix).flippingMatrix;
+  return bestSolution;
 }
 
 export function getMinimalNumberOfPresses(solution: boolean[]): number {
@@ -105,4 +101,53 @@ function getFirstRowPressSolution(lastRow: boolean[]): boolean[] {
     return [false, false, false, true, false];
   }
   return [false, false, false, false, false];
+}
+
+function findOneSolution(grid: boolean[]): boolean[] {
+  const { flippingMatrix, resultingGrid } = cascadeFlip(grid);
+  const resultingLastRow = resultingGrid.slice(20, 25);
+
+  if (resultingLastRow.every(cell => !cell)) {
+    return flippingMatrix;
+  }
+
+  const updatedGrid = [...resultingGrid];
+  
+  getFirstRowPressSolution(resultingLastRow).forEach((value, index) => {
+    if (value) {
+      toggleGridCell(updatedGrid, index);
+      flippingMatrix[index] = !flippingMatrix[index];
+    }
+  });
+
+  return cascadeFlip(updatedGrid, flippingMatrix).flippingMatrix;
+}
+
+function findAllSolutions(solution: boolean[]): boolean[][] {
+  const n1 = [
+    false, true, true, true, false,
+    true, false, true, false, true,
+    true, true, false, true, true,
+    true, false, true, false, true,
+    false, true, true, true, false,
+  ];
+  const n2 = [
+    true, false, true, false, true,
+    true, false, true, false, true,
+    false, false, false, false, false,
+    true, false, true, false, true,
+    true, false, true, false, true,
+  ];
+  const allSolutions: boolean[][] = [];
+
+  allSolutions.push(solution);
+  allSolutions.push(add(solution, n1));
+  allSolutions.push(add(solution, n2));
+  allSolutions.push(add(add(solution, n1), n2));
+
+  return allSolutions;
+}
+
+function add(vect1: boolean[], vect2: boolean[]): boolean[] {
+  return vect1.map((value, index) => value !== vect2[index]);
 }

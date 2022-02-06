@@ -1,28 +1,33 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
-import { createNewGrid, findSolution, toggleGridCell } from '../game/game';
+import { toggleGridCell } from '../game/game';
+import { Level } from '../game/level';
 
 interface GameState {
   grid: boolean[];
   initialGrid: boolean[];
-  solution: boolean[];
+  minimalNumberOfPresses: number;
   isWon: boolean;
   userPressCount: number;
   score: number | null;
   skipTokens: number | null;
   consecutiveWins: number | null;
+
+  // Used for easier debugging
+  // solution: boolean[];
 }
 
-const initialGrid = createNewGrid();
-
 const initialState: GameState = {
-  grid: [...initialGrid],
-  initialGrid,
-  solution: findSolution(initialGrid),
+  grid: [],
+  initialGrid: [],
+  minimalNumberOfPresses: 0,
   isWon: false,
   userPressCount: 0,
   score: null,
   skipTokens: null,
   consecutiveWins: null,
+
+  // Used for easier debugging
+  // solution: [],
 };
 
 const gameSlice = createSlice({
@@ -37,24 +42,28 @@ const gameSlice = createSlice({
         state.isWon = true;
       }
     },
-    nextLevel: (state: Draft<GameState>) => {
-      if (state.isWon = true) {
-        state.initialGrid = createNewGrid();
-        state.grid = [...state.initialGrid];
-        state.solution = findSolution(state.initialGrid);
-        state.isWon = false;
-        state.userPressCount = 0;
-      }
+    goToLevel: (state: Draft<GameState>, action: PayloadAction<Level>) => {
+      state.grid = action.payload.grid;
+      state.initialGrid = action.payload.grid;
+      state.minimalNumberOfPresses = action.payload.minimalNumberOfPresses;
+      state.isWon = false;
+      state.userPressCount = 0;
+
+      // Used for easier debugging
+      // state.solution = findBestSolution(state.grid);
     },
-    skipLevel: (state: Draft<GameState>) => {
+    skipToLevel: (state: Draft<GameState>, action: PayloadAction<Level>) => {
       if (state.skipTokens && state.skipTokens > 0) {
-        state.initialGrid = createNewGrid();
-        state.grid = [...state.initialGrid];
-        state.solution = findSolution(state.initialGrid);
+        state.initialGrid = action.payload.grid;
+        state.grid = action.payload.grid;
+        state.minimalNumberOfPresses = action.payload.minimalNumberOfPresses;
         state.isWon = false;
         state.skipTokens--;
         state.consecutiveWins = 0;
         state.userPressCount = 0;
+
+        // Used for easier debugging
+        // state.solution = findBestSolution(state.grid);
       }
     },
     resetLevel: (state: Draft<GameState>) => {
@@ -75,8 +84,8 @@ const gameSlice = createSlice({
 
 export const {
   toggleCell,
-  nextLevel,
-  skipLevel,
+  goToLevel,
+  skipToLevel,
   resetLevel,
   setScore,
   setSkipTokens,
